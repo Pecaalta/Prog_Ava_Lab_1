@@ -18,5 +18,6 @@ Fecha::Fecha(int dia, int mes, int anio){
     this->mes = mes;
     this->anio = anio;
   }
-}
+};
+
 Fecha::~Fecha(){};

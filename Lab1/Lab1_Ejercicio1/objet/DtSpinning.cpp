@@ -12,7 +12,7 @@ int DtSpinning::getcantBicicletas(){
 
 DtSpinning::~DtSpinning(){}
 
-
+// Sobrecarga de flujo de trabajo en el objeto ostream&
 ostream& operator<<(ostream& os,  DtSpinning& dt)  {
     os << endl;
 	os << "Id Clase: " << dt.getid()  << endl ;
@@ -35,7 +35,6 @@ ostream& operator<<(ostream& os,  DtSpinning& dt)  {
 
     return os;
 }
-
 ostream& operator<<(ostream& os,  DtSpinning* dt)  {
     os << endl;
 	os << "Id Clase: " << dt->getid()  << endl ;
@@ -55,7 +54,6 @@ ostream& operator<<(ostream& os,  DtSpinning* dt)  {
     os << endl;
 	os << "Cantidad de de bicicletas: " << dt->getcantBicicletas() << endl;
     os << endl;
-    
+
     return os;
 }
-

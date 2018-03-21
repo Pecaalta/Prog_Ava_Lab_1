@@ -8,11 +8,13 @@ class DtEntrenamiento:public DtClase {
   public:
     bool getenRambla();
     void setenRambla(bool enRambla);
+    
     DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla);
     DtEntrenamiento(int id, string nombre, Turno turno);
+    ~DtEntrenamiento();
+    
     friend ostream& operator<<(ostream& os,  DtEntrenamiento& dt);
     friend ostream& operator<<(ostream& os,  DtEntrenamiento* dt);
-    ~DtEntrenamiento();
 };
 
 

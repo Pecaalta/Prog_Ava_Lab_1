@@ -18,6 +18,8 @@ class DtClase {
     int getid();
     string getnombre();
     Turno getturno();
+    
+    
     DtClase(int id, string nombre, Turno turno);
     ~DtClase();
 };

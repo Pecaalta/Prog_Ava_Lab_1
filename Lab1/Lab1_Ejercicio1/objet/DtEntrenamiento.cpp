@@ -14,7 +14,6 @@ DtEntrenamiento::DtEntrenamiento(int id, string nombre, Turno turno):DtClase(id,
 };
 DtEntrenamiento::~DtEntrenamiento(){};
 
-
 ostream& operator<<(ostream& os,  DtEntrenamiento& dt)  {
     os << endl;
 	os << "Id Clase: " << dt.getid()  << endl ;
@@ -37,7 +36,6 @@ ostream& operator<<(ostream& os,  DtEntrenamiento& dt)  {
 
     return os;
 }
-
 ostream& operator<<(ostream& os,  DtEntrenamiento* dt)  {
     os << endl;
 	os << "Id Clase: " << dt->getid()  << endl ;

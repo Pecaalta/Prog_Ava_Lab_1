@@ -19,6 +19,7 @@ string DtClase::getnombre(){
 Turno DtClase::getturno(){
   return this->turno;
 };
+
 DtClase::DtClase(int id, string nombre, Turno turno){
   this->id = id;
   this->nombre = nombre;

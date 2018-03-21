@@ -25,11 +25,27 @@ int main(int argc, char** argv) {
 
 	InicializaSocio();
 	InicializaClases();
-	agregarSocio("52","mauro");
-	agregarSocio("53","leandro");
+	agregarSocio("1","mauro");
+	agregarSocio("2","leandro");
+	agregarSocio("3","maia");
 	
 	Turno t = Manana;
-	DtSpinning p(5,"mauro",t,20);
+	DtEntrenamiento p(0,"programacion",t,true);
+	
 	agregarClase(p);
-	ImprimeClases();
+	Fecha f(20,10,2000);
+	agregarInscripcion("1",0,f);
+	agregarInscripcion("2",0,f);
+	agregarInscripcion("3",0,f);
+	DtSocio** dts = obtenerInfoSociosPorClase(0,5);
+	borrarInscripcion("3",0);
+	for(int i = 0 ; i<5;i++){
+		cout << "**********************" << endl;
+		cout << "ci - " << dts[i]->getCI() << endl;
+		cout << "nombre - " << dts[i]->getnombre() << endl;
+		cout << "**********************" << endl;
+	}
+	
+	//ImprimeClases();
+	
 }

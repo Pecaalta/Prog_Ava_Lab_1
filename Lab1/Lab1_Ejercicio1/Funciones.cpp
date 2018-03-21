@@ -2,8 +2,8 @@
 
 	Socio* socio_del_sistema[MAX_SOCIOS];
 	Clase* clases_del_sistema[MAX_CLASES];
-	Inscripcion* Inscripcion_del_sistema[MAX_CLASES];
-	
+	Inscripcion* Inscripcion_del_sistema[MAX_CLASES*MAX_SOCIOS];
+
 	void InicializaSocio(){
 		for(int i = 0;i<MAX_SOCIOS;i++){
 			socio_del_sistema[i]=NULL;
@@ -37,17 +37,17 @@
 			}
 		}
 	}
-	
 
 
+
+	/*
+		Crea un nuevo socio en el sistema. En caso de ya existir, levanta la excepciï¿½n
+		std::invalid_argument.
+	*/
 	void agregarSocio(string ci, string nombre){
-		/*
-			Crea un nuevo socio en el sistema. En caso de ya existir, levanta la excepción
-			std::invalid_argument.
-		*/
 		Socio* aux;
 		int i = 0;
-		
+
 		for(i ;i<MAX_SOCIOS;i++){
 			aux = socio_del_sistema[i];
 			if (aux == NULL) {
@@ -58,17 +58,17 @@
 		}
 		if ( i == (MAX_SOCIOS - 1) )
 			throw invalid_argument("Superado el limite de registros");
-		
+
 	}
-	
+
+	/*
+		Crea una nueva clase en el sistema. En caso de ya existir, levanta una excepciï¿½n
+		std::invalid_argument.
+	*/
 	void agregarClase(DtSpinning& clase){
-		/*
-			Crea una nueva clase en el sistema. En caso de ya existir, levanta una excepción
-			std::invalid_argument.
-		*/
 		Clase* aux;
 		int i = 0;
-		
+
 		for(i ;i<MAX_CLASES;i++){
 			aux = clases_del_sistema[i];
 			if (aux == NULL) {
@@ -82,13 +82,9 @@
 			throw invalid_argument("Superado el limite de registros");
 	}
 	void agregarClase(DtEntrenamiento& clase){
-		/*
-			Crea una nueva clase en el sistema. En caso de ya existir, levanta una excepción
-			std::invalid_argument.
-		*/
 		Clase* aux;
 		int i = 0;
-		
+
 		for(i ;i<MAX_CLASES;i++){
 			aux = clases_del_sistema[i];
 			if (aux == NULL) {
@@ -96,41 +92,97 @@
 				clase.~DtEntrenamiento();
 				break;
 			}
-			if (aux->getId() == clase.getid()) throw invalid_argument("CI duplicado");
+			if (aux->getId() == clase.getid()) throw invalid_argument("ID duplicado");
 		}
 		if ( i == (MAX_CLASES - 1) )
 			throw invalid_argument("Superado el limite de registros");
 	}
-	
-	
-	
-	
-	
+
+
+
+
+	/*
+		Crea una inscripciï¿½n de un socio a una clase. La inscripciï¿½n tiene lugar siempre y
+		cuando el socio y la clase existan, de lo contrario se levanta una excepciï¿½n
+		std::invalid_argument. Si ya existe una inscripciï¿½n de ese usuario para esa clase, o si
+		el cupo de esa clase ya fue alcanzado, tambiï¿½n se levanta una excepciï¿½n
+		std::invalid_argument.
+	*/
 	void agregarInscripcion(string ciSocio, int idClase, Fecha fecha){
-		/*
-			Crea una inscripción de un socio a una clase. La inscripción tiene lugar siempre y
-			cuando el socio y la clase existan, de lo contrario se levanta una excepción
-			std::invalid_argument. Si ya existe una inscripción de ese usuario para esa clase, o si
-			el cupo de esa clase ya fue alcanzado, también se levanta una excepción
-			std::invalid_argument. 
-		*/
+
+		Clase* clase;
+		Socio* socio;
+		int i = 0;
+		for(i ;i<MAX_CLASES;i++){
+			clase = clases_del_sistema[i];
+			if (clase != NULL and clase->getId() == idClase) break;
+		}
+		if (i == (MAX_CLASES-1)) throw invalid_argument("Id de clase invalido");
+		else i = 0;
+		for(i ;i<MAX_SOCIOS;i++){
+			socio = socio_del_sistema[i];
+			if (socio != NULL and socio->getCI() == ciSocio) break;
+		}
+		if (i == (MAX_SOCIOS-1)) throw invalid_argument("CI del socio invalido");
+		else i = 0;
+
+		//cobertir string a int
+	
+		int numb;	
+		istringstream ( ciSocio ) >> numb;
 		
+		if (clase->searchInscripcion(numb)) throw invalid_argument("No ahi cupos para este socio en esta clase");
+
+		DtSocio* dt_nuevoSocio = new DtSocio(numb, socio->getNombre());
+		Inscripcion* nueva = new Inscripcion(&fecha,dt_nuevoSocio);
+
+		clase->addInscripcion(nueva);
+
 	}
 	void borrarInscripcion(string ciSocio, int idClase){
 		/*
-			Borra la inscripción de un socio a una clase. Si no existe una inscripción de ese
-			usuario para esa clase, vanta una excepción std::invalid_argument.
+			Borra la inscripciï¿½n de un socio a una clase. Si no existe una inscripciï¿½n de ese
+			usuario para esa clase, vanta una excepciï¿½n std::invalid_argument.
 		*/
+		Clase* clase;
+		int i = 0;
+		for(i ;i<MAX_CLASES;i++){
+			clase = clases_del_sistema[i];
+			if (clase != NULL and clase->getId() == idClase) break;
+		}
+		if (i == (MAX_CLASES-1)) throw invalid_argument("Id de clase invalido");
+		int numb;	
+		istringstream ( ciSocio ) >> numb;
+		if(!clase->deleteInscripcion(numb)) throw invalid_argument("Socio no existe en este curso ");
 	}
-	
-	DtSocio** obtenerInfoSociosPorClase (int idClase, int& cantSocios){
+
+	DtSocio** obtenerInfoSociosPorClase (int idClase, int cantSocios){
 		/*
-			Retorna un arreglo con los socios que están inscriptos a determinada clase. El largo
-			del arreglo de socios está dado por el parámetro cantSocios.
+			Retorna un arreglo con los socios que estï¿½n inscriptos a determinada clase. El largo
+			del arreglo de socios estï¿½ dado por el parï¿½metro cantSocios.
 		*/
+		Clase* clase;
+		int i = 0;
+		for(i ;i<MAX_CLASES;i++){
+			clase = clases_del_sistema[i]; 
+			if (clase != NULL and clase->getId() == idClase) break;
+		}
+		if (i == (MAX_CLASES-1)) throw invalid_argument("Id de clase invalido");
+		else i = 0;
+		
+		return clase->getCantSocios(cantSocios);
 	}
 	DtClase& obtenerClase(int idClase){
 		/*
-			Retorna la información de la clase identificada por idClase.
+			Retorna la informaciï¿½n de la clase identificada por idClase.
+		*/
+		/*
+		Clase* clase;
+		int i = 0;
+		for(i ;i<MAX_CLASES;i++){
+			clase = clases_del_sistema[i];
+			if (clase != NULL and clase->getId() == idClase) break;
+		}
+		if (i == (MAX_CLASES-1)) throw invalid_argument("Id de clase invalido");
 		*/
 	}
