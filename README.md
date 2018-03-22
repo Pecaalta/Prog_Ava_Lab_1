@@ -7,9 +7,9 @@
 <p align="center">
   <b>Integrantes</b><br>
   <a href="#">Posher</a> |
-  <a href="#">Anastacio</a> |
-  <a href="#">Vergantilob</a> |
-  <a href="#">Trolob</a> |
+  <a href="#">Anastasio</a> |
+  <a href="#">Vergantilov</a> |
+  <a href="#">Trolov</a> |
   <a href="#">Federico(Provisional)</a>
   <br><br>
 </p>
