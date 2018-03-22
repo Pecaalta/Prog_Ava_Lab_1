@@ -1,11 +1,13 @@
 #include "DtSocio.h"
 
+/*
 void DtSocio::setCI(int CI){
   this->CI = CI;
 };
 void DtSocio::setnombre(string nombre){
   this->nombre = nombre;
 };
+*/
 int DtSocio::getCI(){
   return this->CI;
 };

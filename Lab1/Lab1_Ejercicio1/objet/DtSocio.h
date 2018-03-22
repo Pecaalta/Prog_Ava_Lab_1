@@ -9,8 +9,8 @@ class DtSocio {
     int CI;
     string nombre;
   public:
-    void setCI(int CI);
-    void setnombre(string nombre);
+    //void setCI(int CI);
+    //void setnombre(string nombre);
     int getCI();
     string getnombre();
 

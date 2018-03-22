@@ -1,18 +1,23 @@
 #include "DtSpinning.h"
 
+/*
 void DtSpinning::setcantBicicletas(){
   this->cantBicicletas = cantBicicletas;//controlar limites
 }
-DtSpinning::DtSpinning(int id, string nombre, Turno turno,int cantBicicletas):DtClase(id, nombre, turno){
-  this->cantBicicletas = cantBicicletas;//controlar limites
-}
+*/
 int DtSpinning::getcantBicicletas(){
   return cantBicicletas;
 }
 
+DtSpinning::DtSpinning(int id, string nombre, Turno turno,int cantBicicletas):DtClase(id, nombre, turno){
+	if(cantBicicletas < 50)
+		this->cantBicicletas = cantBicicletas;
+	else
+		throw invalid_argument("Limite de biciciletas superado");
+
+}
 DtSpinning::~DtSpinning(){}
 
-// Sobrecarga de flujo de trabajo en el objeto ostream&
 ostream& operator<<(ostream& os,  DtSpinning& dt)  {
     os << endl;
 	os << "Id Clase: " << dt.getid()  << endl ;

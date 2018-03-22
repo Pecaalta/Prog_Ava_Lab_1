@@ -1,11 +1,14 @@
 #include "DtEntrenamiento.h"
 
-bool DtEntrenamiento::getenRambla(){
-  return this->enRambla;
-};
+/*
 void DtEntrenamiento::setenRambla(bool enRambla){
   this->enRambla = enRambla;
 };
+*/
+bool DtEntrenamiento::getenRambla(){
+  return this->enRambla;
+};
+
 DtEntrenamiento::DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla):DtClase(id, nombre, turno){
   this->enRambla = enRambla;
 };
@@ -16,9 +19,9 @@ DtEntrenamiento::~DtEntrenamiento(){};
 
 ostream& operator<<(ostream& os,  DtEntrenamiento& dt)  {
     os << endl;
-	os << "Id Clase: " << dt.getid()  << endl ;
-	os << "Nombre: " << dt.getnombre() << endl;
-	os << "Turno: ";
+	os << "    Id Clase: " << dt.getid()  << endl ;
+	os << "    Nombre: " << dt.getnombre() << endl;
+	os << "    Turno: ";
 	switch(dt.getturno()){
 		case Manana:
 			os << "Maniana";
@@ -31,16 +34,16 @@ ostream& operator<<(ostream& os,  DtEntrenamiento& dt)  {
 		break;
 	}
     os << endl;
-	os << "En rambla: " << (dt.getenRambla()?"Si":"No") << endl;
+	os << "    En rambla: " << (dt.getenRambla()?"Si":"No") << endl;
     os << endl;
 
     return os;
 }
 ostream& operator<<(ostream& os,  DtEntrenamiento* dt)  {
     os << endl;
-	os << "Id Clase: " << dt->getid()  << endl ;
-	os << "Nombre: " << dt->getnombre() << endl;
-	os << "Turno: ";
+	os << "    Id Clase: " << dt->getid()  << endl ;
+	os << "    Nombre: " << dt->getnombre() << endl;
+	os << "    Turno: ";
 	switch(dt->getturno()){
 		case Manana:
 			os << "Maniana";
@@ -53,7 +56,7 @@ ostream& operator<<(ostream& os,  DtEntrenamiento* dt)  {
 		break;
 	}
     os << endl;
-	os << "En rambla: " << (dt->getenRambla()?"Si":"No") << endl;
+	os << "    En rambla: " << (dt->getenRambla()?"Si":"No") << endl;
     os << endl;
     
     return os;

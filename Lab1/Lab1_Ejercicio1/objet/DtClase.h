@@ -12,13 +12,12 @@ class DtClase {
 	string nombre;
 	Turno turno;
   public:
-    void setid(int id);
-    void setnombre(string nombre);
-    void setturno(Turno turno);
+    //void setid(int id);
+    //void setnombre(string nombre);
+    //void setturno(Turno turno);
     int getid();
     string getnombre();
     Turno getturno();
-    
     
     DtClase(int id, string nombre, Turno turno);
     ~DtClase();

@@ -4,10 +4,11 @@
 #include "DtClase.h"
 
 class DtEntrenamiento:public DtClase {
-  bool enRambla;
+  private:
+  	bool enRambla;
   public:
     bool getenRambla();
-    void setenRambla(bool enRambla);
+    //void setenRambla(bool enRambla);
     
     DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla);
     DtEntrenamiento(int id, string nombre, Turno turno);

@@ -6,7 +6,6 @@ DtSocio* Inscripcion::getcliente(){
 int Inscripcion::getCI(){
   return this->cliente->getCI();
 }
-
 Fecha* Inscripcion::getFecha(){
   return this->fecha;
 }

@@ -1,6 +1,6 @@
 
 #include "DtClase.h"
-
+/*
 void DtClase::setid(int id){
   this->id = id;
 };
@@ -10,6 +10,7 @@ void DtClase::setnombre(string nombre){
 void DtClase::setturno(Turno turno){
   this->turno = turno;
 };
+*/
 int DtClase::getid(){
   return this->id;
 };

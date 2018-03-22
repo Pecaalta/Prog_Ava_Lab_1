@@ -1,0 +1,39 @@
+socios
+	creacion	s	
+	duplicados	s	
+	borrado			
+	listado		s	
+clases				
+	creacion	s	
+	duplicados	s	
+	borrado			
+	listado		s	
+	Cantidad<50	s	
+inscripciones			
+	creacion		(eliminar salto de linea)
+	duplicados		
+	borrado			
+	listado			
+	error dia>31	s	
+	error dia<01	s	
+	error mes>12	s	
+	error mes<01	s	
+	error año<1900	s	
+	id invalido		
+	ci invalido		
+	(Borrar buffer al pedir ci, añadir salto)
+listado de clases		
+	vacio		s	
+	contenido	s	
+	luebo de borrar		
+listado de socios		
+	vacio		s	
+	contenido	s	
+	luebo de borrar		
+socios de clases		
+	id invalido		
+	ci invalido		
+	clase vacia		
+	clase 1			
+	clase +			
+salir			s
