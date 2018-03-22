@@ -1,0 +1,7 @@
+Ejercicio 2 parte 2
+	A) Cuando se intente compilar las clases del ejercicio 2.1 se encuentra el problema de las referencias circulares, en este caso tres clases que se referencian entre sí. El hecho de que por ejemplo la clase A necesite a la clase B para ser compilada y viceversa hace 
+que el compilador de errores.
+Una forma de arreglar este problema es utilizar forward declarations (declaraciones en avanzada).
+De esta manera el compilador es capaz de compilar la clase B sin conocer las definiciones de las
+clase A y C, y la clase C sin las de B y A.
+	B) Forward declarations o declaraciones en avanzada, puede ser en muchas ocasiones cuestión únicamente de estilo o practicidad, siendo únicamente en los casos donde dos objetos se referencian mutuamente creando unas referencias circulares, en estos casos Forward declarations nos proporciona una solución declarando el objeto previo a su referencia, pero sin necesidad de definirla hasta más adelante en el documento.

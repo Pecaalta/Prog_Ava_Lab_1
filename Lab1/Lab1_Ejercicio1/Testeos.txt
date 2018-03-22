@@ -36,3 +36,14 @@ socios de clases
 	clase 1		s	
 	clase +		s	
 salir			s
+	void InicializaSocio();
+	void InicializaClases();
+	void ImprimeSocio();
+	void ImprimeClases();
+	void agregarSocio(string ci, string nombre);
+	void agregarClase(DtSpinning& clase);
+	void agregarClase(DtEntrenamiento& clase);
+	void agregarInscripcion(string ciSocio, int idClase, Fecha fecha);
+	void borrarInscripcion(string ciSocio, int idClase);
+	DtSocio** obtenerInfoSociosPorClase (int idClase, int cantSocios);
+	DtClase& obtenerClase(int idClase);
