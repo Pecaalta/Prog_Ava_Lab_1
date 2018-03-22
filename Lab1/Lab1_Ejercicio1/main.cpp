@@ -179,24 +179,34 @@ void Inscripcion(){
 		getline(cin, opcion);
 		fflush(stdin);  
 		if (opcion == "1")	{
+			system("cls");
+			heder("Nueva Inscripcion");
 			cout << endl;
-			cout << "\t  Fecha (dd/mm/aaaa) > " << endl;
+			cout << "      Fecha: " << endl;
+			cout << "\t  Dia \t\t> ";
 			cin >> d;
-			cout << "/";
+			fflush(stdin);
+			cout << "\t  Mes \t\t> ";
 			cin >> m;
-			cout << "/";
+			fflush(stdin);
+			cout << "\t  Anio \t\t> ";
 			cin >> a;
-			cout << endl;
+			fflush(stdin);
+			
 			Fecha f(d,m,a);
-			cout << "\t  C.I > ";
+			cout << "      ID del curso \t> ";
+			cin >> idclase;
+			fflush(stdin);  
+			cout << "      C.I \t\t> ";
 			getline(cin, ci);
 			fflush(stdin);  
-			cout << "\t  ID del curso > ";
-			cin >> idclase;
 			agregarInscripcion(ci,idclase,f);
 			continuar = true;
 		}
 		else if (opcion == "2")	{
+			system("cls");
+			heder("Inscripciones");
+			cout << endl;
 			cout << "\t  C.I > ";
 			getline(cin, ci);
 			fflush(stdin);  
@@ -210,17 +220,28 @@ void Inscripcion(){
 	
 };
 void Listada_de_Clase(){
-	system("cls");
-	heder("Nuestras Clases");
-	ImprimeClases();
-	heder("Lista de Inscriptos");
+	int clase = 0,tam =0;
+	do{
+		system("cls");
+		heder("Lista de Inscriptos");
+		cout << "    Clase \t\t>";
+		cin >> clase;
+		cout << "    Cantidad a mostrar \t>";
+		cin >> tam;
+	}while (clase<0 and tam<0);
 	
-	DtSocio** dts = obtenerInfoSociosPorClase(0,5);
-	for(int i = 0 ; i<5;i++){
-		cout << "ci - " << dts[i]->getCI() << endl;
-		cout << "nombre - " << dts[i]->getnombre() << endl;
-		cout << "  __________________________________________________________________  " << endl;
+	system("cls");
+	heder("Lista de Inscriptos");
+	DtSocio** dts = obtenerInfoSociosPorClase(clase,tam);
+	if( dts[0]->getCI() == 0)  {
+		cout << "     No hay inscripciones " << endl;
+	}else{
+		for(int i = 0 ; i<tam;i++){
+			cout << "     C.I. \t- " << dts[i]->getCI() << endl;
+			cout << "     Nombre \t- " << dts[i]->getnombre() << endl;
+		}	
 	}
+	cout << "      __________________________________________________________  " << endl << "    ";
 	system("pause");
 
 };

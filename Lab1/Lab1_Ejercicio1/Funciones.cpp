@@ -150,8 +150,10 @@
 		}
 		if (!invalido) 
 			throw invalid_argument("Id de clase invalido");
-		else 
+		else {
+			invalido = false;
 			i = 0;
+		}
 		for(i ;i<MAX_SOCIOS;i++){
 			socio = socio_del_sistema[i];
 			if (socio != NULL and socio->getCI() == ciSocio) {
@@ -159,10 +161,10 @@
 				break;
 			}
 		}
+		
 		if (!invalido) 
 			throw invalid_argument("C.I. de socio invalido");
-		else 
-			i = 0;
+
 
 		// covertir string a int por recerimintos de parametos
 		int numb;	

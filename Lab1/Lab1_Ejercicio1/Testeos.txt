@@ -1,4 +1,4 @@
-socios
+socios			Mauro
 	creacion	s	
 	duplicados	s	
 	borrado			
@@ -10,30 +10,29 @@ clases
 	listado		s	
 	Cantidad<50	s	
 inscripciones			
-	creacion		(eliminar salto de linea)
-	duplicados		
-	borrado			
-	listado			
+	creacion	s	
+	duplicados	s	
+	borrado		s	
+	listado		s	
 	error dia>31	s	
 	error dia<01	s	
 	error mes>12	s	
 	error mes<01	s	
 	error año<1900	s	
-	id invalido		
-	ci invalido		
-	(Borrar buffer al pedir ci, añadir salto)
+	id invalido	s	
+	ci invalido	s	
 listado de clases		
 	vacio		s	
 	contenido	s	
-	luebo de borrar		
+	luego de borrar		
 listado de socios		
 	vacio		s	
 	contenido	s	
-	luebo de borrar		
+	luego de borrar		
 socios de clases		
-	id invalido		
-	ci invalido		
-	clase vacia		
-	clase 1			
-	clase +			
+	id invalido	s		
+	clase vacia	s		
+	borr socio	s	
+	clase 1		s	
+	clase +		s	
 salir			s

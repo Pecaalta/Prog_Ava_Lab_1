@@ -42,7 +42,7 @@ DtSocio** Spinning::getCantSocios(int cantSocios){
 		}
 	}
 	for (int i = cant; i < cantSocios ; i++) 
-		ret[i] = new DtSocio(0," Vacante");
+		ret[i] = new DtSocio(0," ");
 	return ret;
 }
 bool Spinning::deleteInscripcion(int ciSocio){

@@ -66,7 +66,7 @@ DtSocio** Entrenaminto::getCantSocios(int cantSocios){
 		}
 	}
 	for (int i = cant; i < cantSocios ; i++) 
-		ret[i] = new DtSocio(-1,"Vacante");
+		ret[i] = new DtSocio(0," ");
 	return ret;
 }
 bool Entrenaminto::deleteInscripcion(int ciSocio){
