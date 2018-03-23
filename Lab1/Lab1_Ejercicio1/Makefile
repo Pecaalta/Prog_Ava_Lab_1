@@ -7,6 +7,12 @@ CC 			= 	g++
 OPCIONES 	= 	-g -Wall
 Nombre 		= 	"Ejecutable.exe"
 
+ifeq ($(OS),Windows_NT)
+	RM = cmd /C del /s /q *.o $(Nombre) 
+else
+	RM = rm -f $(OBJETOS) main.cpp $(Nombre) 
+endif
+
 $(Nombre): $(OBJETOS) main.o Makefile
 	$(CC) $(OPCIONES) $(OBJETOS) main.cpp -o $(Nombre) 
 
@@ -47,7 +53,8 @@ Funciones.o: Funciones.cpp Funciones.h
 	$(CC) -c Funciones.cpp -o Funciones.o $(LIBS)
 
 clean:
-	rm -f $(OBJETOS) $(Nombre)
+	$(RM)
+		
 rebuild:
 	make clean
 	make
