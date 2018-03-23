@@ -33,7 +33,9 @@ void heder(string texto){
 		cout << " ";
 	}
 	cout << texto;
-	if(spacio*2 != (62-texto.size()))
+	int var1 = (spacio*2);
+	int var2 = 62-texto.size();
+	if( var1 != var2)
 		cout << " ";
 	for (int i = 0 ;i<spacio;i++){
 		cout << " ";
@@ -114,20 +116,19 @@ DtEntrenamiento* nuevoEntrenamiento(){
 		else if (opcion == "no" or opcion == "No" or opcion == "NO" or opcion == "n" or opcion == "N"){
 			continuar = true;
 			enrambla = false;
-		}
-		else
+		}else{
 			cout << "  Opcion incorrecta";
 			cout << endl;
+		}
 	}
 	
-	DtEntrenamiento* p = new DtEntrenamiento(id,nombre,t,enrambla);
-	return p;
+	return new DtEntrenamiento(id,nombre,t,enrambla);
 }
 DtSpinning* nuevaSpinning(){
 	string nombre,opcion; 
 	int id,cantbicis;
 	Turno t;
-	bool enrambla, continuar = false;
+	bool continuar = false;
 	
 	cout << "  id> "; 
 	cin >> id;
@@ -137,21 +138,43 @@ DtSpinning* nuevaSpinning(){
 	fflush(stdin); 
 	getline(cin, nombre);
 	fflush(stdin); 
+				
+	while(!continuar){
+		cout << "  Turno: ";
+		cout << endl;
+		cout << "\t  1 mañana " << endl;
+		cout << "\t  2 tarde " << endl;
+		cout << "\t  3 noche " << endl;
+		cout << "  > ";
+		getline(cin, opcion);
+		fflush(stdin);  
+		if (opcion == "1")	{
+			t = Manana;
+			continuar = true;
+		}
+		else if (opcion == "2")	{
+			t = Tarde;
+			continuar = true;
+		}
+		else if (opcion == "3")	{
+			t = Noche;
+			continuar = true;
+		}else
+			cout << "  Opcion incorrecta";
+	}
 	
 	cout << "  Canteidad de Bisicletas > ";
 	fflush(stdin);  
 	cin >> cantbicis;
 	fflush(stdin); 
 
-	DtSpinning *p = new DtSpinning(id,nombre,t,cantbicis);
-	return p;
+	return new DtSpinning(id,nombre,t,cantbicis);
 	
 };
 void nuevoSocio(){
 	system("cls");
 	heder("Nueva Socio");
 	string nombre,ci;
-	bool continuar = false;
 	
 	cout << "  C.I. > ";
 	cin >> ci;
