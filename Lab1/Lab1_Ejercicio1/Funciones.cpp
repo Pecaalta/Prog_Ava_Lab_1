@@ -26,8 +26,7 @@
 			}
 		}
 		if (cont == 0)
-			cout << "    No hay elementos " << endl << "    ";
-		cout << "      __________________________________________________________  " << endl<< "    ";
+			cout << "    No hay elementos " << endl;
 	}
 	void ImprimeClases(){
 		int cont = 0;
@@ -40,7 +39,7 @@
 				cout << "     Turno  \t";
 				switch(aux->getTurno()){
 					case Manana:
-						cout << "Maniana";
+						cout << "Ma" << (char)164 << "ana";
 					break;
 					case Tarde:
 						cout << "Tarde";
@@ -53,8 +52,7 @@
 			}
 		}
 		if (cont == 0)
-			cout << "    No hay elementos " << endl << "    ";
-		cout << "      __________________________________________________________  " << endl << "    ";
+			cout << "    No hay elementos " << endl;
 	}
 
 

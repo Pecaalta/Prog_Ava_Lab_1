@@ -1,94 +1,154 @@
 #include <iostream>
 #include <string>
-#include <stdexcept>
-
+#include <stdio.h>
+#include <cstdlib>
 using namespace std;
 
-#include "objet/datos.h"
-
-#include "objet/Fecha.h"
-#include "objet/DtSocio.h"
-#include "objet/DtClase.h"
+#include "Funciones.h"
 #include "objet/DtSpinning.h"
 #include "objet/DtEntrenamiento.h"
 
-#include "objet/Clase.h"
-#include "objet/Socio.h"
-#include "objet/Inscripcion.h"
-#include "objet/Spinning.h"
-#include "objet/Entrenaminto.h"
-
-#include "Funciones.h"
-void heder(string texto){
-	int spacio = (62-texto.size())/2;
-	cout << endl;
-	cout << "   " << (char)201;
-	for (int i = 0 ;i<62;i++){
-		cout << (char)205;
+#ifdef linux
+  	string ASCII[] = {"\u2550","\u2551","\u2554","\u2557","\u255D","\u255A"};
+	void vaciar(){
+		system("clear");
+	}	
+	ancho = 80;
+	void FormatearVentana(){
+	    printf("\033]0;%s\007", "Primer Laboratorio");
+	    struct winsize X;
+		ioctl(0, TIOCGWINSZ, &X);
+	    ancho  = X.ws_col; 
 	}
-	cout << (char)187 << endl;
+#endif
+#if  defined(WIN32) || defined(_WIN32)
+ 	char ASCII[]  = {(char)205,(char)186,(char)201,(char)187,(char)188,(char)200};
+	int ancho;
 	
-	cout <<  "   " << (char)186;
+	void vaciar(){
+		 system("cls");
+	}
+	void FormatearVentana(){
+		system("MODE CON: COLS=80 LINES=20");
+		system("title Primer Laboratorio");
+		system("color 0f");
+	    ancho = 80;
+	}
+#endif
+
+void pausar(){
+	cout << "Precione enter para continuar...";
+	cin.clear();
+  	cin.ignore(); 	
+	getchar();
+}
+int toInt(string texto){
+	int ret = 0, aux = 0, pow = 1;
+	for(int i = texto.size()-1; i >= 0;i--){
+		aux = ((int)texto[i] - 48);
+		if(aux <= 9 and aux >= 0 ){
+			ret += pow * aux;
+			pow *= 10;
+		}else{
+			return -1;
+		}
+	}
+	return ret;
+}
+
+void Cabeza(string texto){
+	int anchoImprimible = (ancho-10);
+	int spacio = (anchoImprimible-texto.size())/2;
+	int var1 = (spacio*2);
+	int var2 = anchoImprimible-texto.size();
+	string tab = "    ";
+	cout << endl;
+	cout << tab << ASCII[2];
+	for (int i = 0 ;i<anchoImprimible;i++){
+		cout << ASCII[0];
+	}
+	cout << ASCII[3] << endl;
+
+	cout <<  tab << ASCII[1];
 	for (int i = 0 ;i<spacio;i++){
 		cout << " ";
 	}
 	cout << texto;
-	int var1 = (spacio*2);
-	int var2 = 62-texto.size();
 	if( var1 != var2)
 		cout << " ";
 	for (int i = 0 ;i<spacio;i++){
 		cout << " ";
 	}
-	cout << (char)186 << endl;
-	
-	cout <<  "   " << (char)200;
-	for (int i = 0 ;i<62;i++){
-		cout << (char)205;
+	cout << ASCII[1] << endl;
+
+	cout <<  tab << ASCII[5];
+	for (int i = 0 ;i<anchoImprimible;i++){
+		cout << ASCII[0];
 	}
-	cout << (char)188 << endl;
+	cout << ASCII[4] << endl;
 	cout << endl;
+	}
+void Pis(){
+	int anchoImprimible = (ancho-18);
+	cout << "    ";
+	for (int i = 0 ;i<anchoImprimible;i++){
+		cout << "-";
+	}
+	cout << endl << "   ";
+	pausar();
 }
 
-int tipoClase(){
-	int opcion;
-	system("cls");
-	heder("Tipo de Clase");
-	cout << "  Tipo de clase: " << endl;
-	cout << "\t 1 Entrenaminto" << endl;
-	cout << "\t 2 Spining" << endl;
-	cout << endl ;
-	cout << "\t >" ;
+int TipoClase(){
+	string s_opcion = "1";
+	do{
+		vaciar();
+		Cabeza("Tipo de Clase");
+		cout << "\t  Tipo de clase: " << endl;
+		cout << "\t   1 Entrenaminto" << endl;
+		cout << "\t   2 Spining" << endl;
+		cout << endl;
+		if (s_opcion != "1"){
+			cout << "\t  Opcion Invalida " << endl;
+		}else{
+			cout << endl;
+		}
+		cout << "\t  > ";
+		fflush(stdin);
+		cin >> s_opcion;
+	}while(s_opcion != "1" and s_opcion != "2");
+
 	fflush(stdin);
-	cin >> opcion;
-	fflush(stdin);
-	return opcion;
+	return toInt(s_opcion);
 }
-DtEntrenamiento* nuevoEntrenamiento(){
-	string nombre,opcion; 
-	int id;
+DtEntrenamiento* NuevoEntrenamiento(){
+	string nombre,opcion, varcin;
+	int id = 1;
 	Turno t;
 	bool enrambla, continuar = false;
-	system("cls");
-	heder("Nueva Clase");
-	cout << "  id> "; 
-	cin >> id;
+	vaciar();
+	Cabeza("Nueva Clase");
+	do{
+		if (id!=1) cout << "\t  No es un numero "<< endl;
+		cout << "\t  ID > ";
+		cin >> opcion;
+		fflush(stdin);
+		id = toInt(opcion);
+	}while(id==-1);
+
+	cout << "\t  Nombre > ";
 	fflush(stdin);
-	
-	cout << "  Nombre > ";
-	fflush(stdin); 
-	getline(cin, nombre);
-	fflush(stdin);  
-				
+	cin >> nombre;
+
 	while(!continuar){
-		cout << "  Turno: ";
+		cout << "\t  Turno: ";
 		cout << endl;
-		cout << "\t  1 mañana " << endl;
-		cout << "\t  2 tarde " << endl;
-		cout << "\t  3 noche " << endl;
-		cout << "  > ";
-		getline(cin, opcion);
-		fflush(stdin);  
+		cout << "\t   1 Ma" << (char)164 << "ana " << endl;
+		cout << "\t   2 Tarde " << endl;
+		cout << "\t   3 Noche " << endl;
+		cout << endl;
+		cout << "\t    > ";
+		fflush(stdin);
+		cin >> opcion;
 		if (opcion == "1")	{
 			t = Manana;
 			continuar = true;
@@ -101,53 +161,57 @@ DtEntrenamiento* nuevoEntrenamiento(){
 			t = Noche;
 			continuar = true;
 		}else
-			cout << "  Opcion incorrecta";
+			cout << "\t  Opcion incorrecta";
 	}
 	continuar = false;
 	while(!continuar){
-		cout << "  En Ruta (si/no)> ";
-		fflush(stdin);  
-		getline(cin, opcion);
-		fflush(stdin);  
-		if (opcion == "si" or opcion == "Si" or opcion == "SI" or opcion == "s" or opcion == "S"){
+		cout << "\t  En Ruta si(1)/no(2)> ";
+		fflush(stdin);
+		cin >> opcion;
+		if (opcion == "si" or opcion == "Si" or opcion == "SI" or opcion == "s" or opcion == "S" or opcion == "1"){
 			continuar = true;
 			enrambla = true;
 		}
-		else if (opcion == "no" or opcion == "No" or opcion == "NO" or opcion == "n" or opcion == "N"){
+		else if (opcion == "no" or opcion == "No" or opcion == "NO" or opcion == "n" or opcion == "N" or opcion == "2"){
 			continuar = true;
 			enrambla = false;
 		}else{
-			cout << "  Opcion incorrecta";
+			cout << "\t  Opcion incorrecta";
 			cout << endl;
 		}
 	}
-	
+
 	return new DtEntrenamiento(id,nombre,t,enrambla);
 }
-DtSpinning* nuevaSpinning(){
-	string nombre,opcion; 
-	int id,cantbicis;
+DtSpinning* NuevaSpinning(){
+	string nombre,opcion;
+	int id = 1,cantbicis;
 	Turno t;
 	bool continuar = false;
-	
-	cout << "  id> "; 
-	cin >> id;
+	vaciar();
+	Cabeza("Nueva Clase");
+	do{
+		if (id!=1) cout << "\t  No es un numero "<< endl;
+		cout << "\t  ID > ";
+		cin >> opcion;
+		fflush(stdin);
+		id = toInt(opcion);
+	}while(id==-1);
+
+	cout << "\t  Nombre > ";
 	fflush(stdin);
-	
-	cout << "  Nombre > ";
-	fflush(stdin); 
 	getline(cin, nombre);
-	fflush(stdin); 
-				
+	fflush(stdin);
+
 	while(!continuar){
-		cout << "  Turno: ";
+		cout << "\t  Turno: ";
 		cout << endl;
-		cout << "\t  1 mañana " << endl;
-		cout << "\t  2 tarde " << endl;
-		cout << "\t  3 noche " << endl;
-		cout << "  > ";
+		cout << "\t   1 Ma" << (char)164 << "ana " << endl;
+		cout << "\t   2 Tarde " << endl;
+		cout << "\t   3 Noche " << endl;
+		cout << "\t  > ";
 		getline(cin, opcion);
-		fflush(stdin);  
+		fflush(stdin);
 		if (opcion == "1")	{
 			t = Manana;
 			continuar = true;
@@ -160,157 +224,182 @@ DtSpinning* nuevaSpinning(){
 			t = Noche;
 			continuar = true;
 		}else
-			cout << "  Opcion incorrecta";
+			cout << "\t  Opcion incorrecta";
 	}
-	
-	cout << "  Canteidad de Bisicletas > ";
-	fflush(stdin);  
+
+	cout << "\t  Canteidad de Bisicletas > ";
+	fflush(stdin);
 	cin >> cantbicis;
-	fflush(stdin); 
+	fflush(stdin);
 
 	return new DtSpinning(id,nombre,t,cantbicis);
-	
+
 };
-void nuevoSocio(){
-	system("cls");
-	heder("Nueva Socio");
+void NuevoSocio(){
+	vaciar();
+	Cabeza("Nueva Socio");
 	string nombre,ci;
-	
-	cout << "  C.I. > ";
+
+	cout << "\t  C.I. > ";
 	cin >> ci;
-	fflush(stdin);  
-	
-	cout << "  Nombre > ";
+	fflush(stdin);
+
+	cout << "\t  Nombre > ";
 	cin >> nombre;
-	fflush(stdin);  
-	
+	fflush(stdin);
+
 	agregarSocio(ci,nombre);
-		
+
 };
 void Inscripcion(){
 	int d,m,a, idclase;
-	string ci,opcion;
+	string ci,opcion,aux;
 	bool continuar = false;
-	
+
+	d = m = a = 1;
 	while(!continuar){
-		system("cls");
-		heder("Inscripciones");
+		vaciar();
+		Cabeza("Inscripciones");
 		cout << "\t  1 Inscribirse " << endl;
 		cout << "\t  2 Borrar Inscripciones " << endl;
 		cout << endl;
-		cout << "  > ";
+		cout << "\t  > ";
 		getline(cin, opcion);
-		fflush(stdin);  
+		fflush(stdin);
 		if (opcion == "1")	{
-			system("cls");
-			heder("Nueva Inscripcion");
+			vaciar();
+			Cabeza("Nueva Inscripcion");
 			cout << endl;
-			cout << "      Fecha: " << endl;
-			cout << "\t  Dia \t\t> ";
-			cin >> d;
-			fflush(stdin);
-			cout << "\t  Mes \t\t> ";
-			cin >> m;
-			fflush(stdin);
-			cout << "\t  Anio \t\t> ";
-			cin >> a;
-			fflush(stdin);
-			
+			cout << "\t  Fecha: " << endl;
+
+			do{
+				if (d!=1) cout << "\t  No es un numero "<< endl;
+				cout << "\t   Dia \t\t> ";
+				cin >> aux;
+				fflush(stdin);
+				d = toInt(aux);
+			}while(d==-1);
+
+			do{
+				if (m!=1) cout << "\t  No es un numero "<< endl;
+				cout << "\t   Mes \t\t> ";
+				cin >> aux;
+				fflush(stdin);
+				m = toInt(aux);
+			}while(m==-1);
+
+			do{
+				if (a!=1) cout << "\t  No es un numero "<< endl;
+				cout << "\t   A" << (char)164 << "o \t\t> ";
+				cin >> aux;
+				fflush(stdin);
+				a = toInt(aux);
+			}while(a==-1);
 			Fecha f(d,m,a);
-			cout << "      ID del curso \t> ";
+
+			cout << "\t  ID del curso \t> ";
 			cin >> idclase;
-			fflush(stdin);  
-			cout << "      C.I \t\t> ";
+			fflush(stdin);
+			cout << "\t  C.I \t\t> ";
 			getline(cin, ci);
-			fflush(stdin);  
+			fflush(stdin);
 			agregarInscripcion(ci,idclase,f);
 			continuar = true;
 		}
 		else if (opcion == "2")	{
 			system("cls");
-			heder("Inscripciones");
+			Cabeza("Inscripciones");
 			cout << endl;
 			cout << "\t  C.I > ";
 			getline(cin, ci);
-			fflush(stdin);  
+			fflush(stdin);
 			cout << "\t  ID del curso > ";
 			cin >> idclase;
 			borrarInscripcion(ci,idclase);
 			continuar = true;
 		}else
-			cout << "  Opcion incorrecta";
+			cout << "\t  Opcion incorrecta";
 	}
-	
+
 };
 void Listada_de_Clase(){
+	string aux;
 	int clase = 0,tam =0;
 	do{
-		system("cls");
-		heder("Lista de Inscriptos");
-		cout << "    Clase \t\t>";
-		cin >> clase;
-		cout << "    Cantidad a mostrar \t>";
-		cin >> tam;
-	}while (clase<0 and tam<0);
-	
-	system("cls");
-	heder("Lista de Inscriptos");
+		vaciar();
+		Cabeza("Lista de Inscriptos");
+		if (clase==-1 or tam==-1) 
+			cout << "\t  Alguno de los parametros no fue valido" << endl;
+		else
+			cout << endl;
+		cout << "\t  Clase \t\t>";
+		cin >> aux;
+		clase = toInt(aux);
+		cout << "\t  Cantidad a mostrar \t>";
+		cin >> aux;
+		tam = toInt(aux);
+	}while (clase<0 or tam<0);
+
+	vaciar();
+	Cabeza("Lista de Inscriptos");
 	DtSocio** dts = obtenerInfoSociosPorClase(clase,tam);
 	if( dts[0]->getCI() == 0)  {
-		cout << "     No hay inscripciones " << endl;
+		cout << "\t  No hay inscripciones " << endl;
 	}else{
 		for(int i = 0 ; i<tam;i++){
-			cout << "     C.I. \t- " << dts[i]->getCI() << endl;
-			cout << "     Nombre \t- " << dts[i]->getnombre() << endl;
-		}	
+			cout << "\t  C.I. \t- " << dts[i]->getCI() << endl;
+			cout << "\t  Nombre \t- " << dts[i]->getnombre() << endl;
+		}
 	}
-	cout << "      __________________________________________________________  " << endl << "    ";
-	system("pause");
+	cout << "      __________________________________________________________" << endl << "    ";
+	pausar();
 
 };
 void ListadoClase(){
-	system("cls");
-	heder("Nuestras Clases");
+	vaciar();
+	Cabeza("Nuestras Clases");
 	ImprimeClases();
-	system("pause");
+	Pis();
 };
 void ListadoSocios(){
-	system("cls");
-	heder("Nuestras Socios");
+	vaciar();
+	Cabeza("Nuestras Socios");
 	ImprimeSocio();
-	system("pause");
+	Pis();
 };
 
-void home(){
+void Home(){
+	string opcionA;
 	int opcion = 1;
 	do{
-		system("cls");
-		heder("Inicio");
-		cout << "\t 1 Nuevo socio" << endl;
-		cout << "\t 2 Nueva clase" << endl;
-		cout << "\t 3 Menu inscripciones" << endl;
-		cout << "\t 4 Todas nuestras clases" << endl;
-		cout << "\t 5 Todos nuestros Socios" << endl;
-		cout << "\t 6 Lista de clase" << endl;
-		cout << "\t 7 Salir" << endl;
+		vaciar();
+		Cabeza("Inicio");
+		cout << "\t  1 Nuevo socio" << endl;
+		cout << "\t  2 Nueva clase" << endl;
+		cout << "\t  3 Menu inscripciones" << endl;
+		cout << "\t  4 Todas nuestras clases" << endl;
+		cout << "\t  5 Todos nuestros Socios" << endl;
+		cout << "\t  6 Lista de clase" << endl;
+		cout << "\t  7 Salir" << endl;
 		cout << endl;
 		if (opcion>7 or opcion<0)
-			cout << "\t Opcion no valida " << endl;
+			cout << "\t  Opcion no valida " << endl;
 		else
 			cout << endl;
-		
+
 		cout << "\t > ";
-		cin >> opcion;
+		cin >> opcionA;
+		opcion = toInt(opcionA);
 		switch(opcion){
 			case 1:
-				nuevoSocio();
+				NuevoSocio();
 				break;
 			case 2:
-				if (tipoClase() == 1){
-					DtEntrenamiento* p = nuevoEntrenamiento();
+				if (TipoClase() == 1){
+					DtEntrenamiento* p = NuevoEntrenamiento();
 					agregarClase(*p);
 				}else{
-					DtSpinning* p = nuevaSpinning();
+					DtSpinning* p = NuevaSpinning();
 					agregarClase(*p);
 				}
 				break;
@@ -330,23 +419,18 @@ void home(){
 	}while(opcion!=7);
 };
 
-
 int main(int argc, char** argv) {
 	try{
-		system("MODE CON: COLS=70 LINES=20");
-		system("title Primer Laboratorio");
-		system("color 0f");
+		FormatearVentana();
 		InicializaSocio();
 		InicializaClases();
 
-		home();
+		Home();
 	}catch(std::invalid_argument &a){
 		system("color 4f");
-		system("cls");
-		heder(a.what());
-		cout << "  "; // Imprime error
-		system("pause");
+		vaciar();
+		Cabeza(a.what());
+		cout << "  ";
+		pausar();
 	}
-
-	
 }
