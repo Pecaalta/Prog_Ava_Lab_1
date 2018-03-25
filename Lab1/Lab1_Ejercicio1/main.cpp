@@ -7,23 +7,27 @@ using namespace std;
 #include "Funciones.h"
 #include "objet/DtSpinning.h"
 #include "objet/DtEntrenamiento.h"
+int ancho = 80;
 
 #ifdef linux
+
+
+	#include <sys/ioctl.h>
+
   	string ASCII[] = {"\u2550","\u2551","\u2554","\u2557","\u255D","\u255A"};
+	
 	void vaciar(){
 		system("clear");
-	}	
-	ancho = 80;
+	}
 	void FormatearVentana(){
-	    printf("\033]0;%s\007", "Primer Laboratorio");
-	    struct winsize X;
+		printf("\033]0;%s\007", "Primer Laboratorio");
+		struct winsize X;
 		ioctl(0, TIOCGWINSZ, &X);
-	    ancho  = X.ws_col; 
+		ancho  = X.ws_col; 
 	}
 #endif
 #if  defined(WIN32) || defined(_WIN32)
  	char ASCII[]  = {(char)205,(char)186,(char)201,(char)187,(char)188,(char)200};
-	int ancho;
 	
 	void vaciar(){
 		 system("cls");
@@ -32,7 +36,6 @@ using namespace std;
 		system("MODE CON: COLS=80 LINES=20");
 		system("title Primer Laboratorio");
 		system("color 0f");
-	    ancho = 80;
 	}
 #endif
 

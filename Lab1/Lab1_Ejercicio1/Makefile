@@ -1,6 +1,6 @@
 
 OBJETOS 	= objet/Fecha.o objet/DtSocio.o objet/DtClase.o objet/DtSpinning.o objet/DtEntrenamiento.o objet/Clase.o objet/Inscripcion.o objet/Spinning.o objet/Entrenaminto.o objet/Socio.o Funciones.o
-FUENTES 	= main.cpp \ objet/Fecha.cpp objet/Fecha.h \ objet/DtSocio.cpp objet/DtSocio.h \ objet/DtClase.cpp objet/DtClase.h \ objet/DtSpinning.cpp objet/DtSpinning.h \ objet/DtEntrenamiento.cpp objet/DtEntrenamiento.h \ objet/Clase.cpp objet/Clase.h \ objet/Inscripcion.cpp objet/Inscripcion.h \ objet/Spinning.cpp objet/Spinning.h \ objet/Entrenaminto.cpp objet/Entrenaminto.h \ objet/Socio.cpp objet/Socio.h \ Funciones.cpp Funciones.h 
+FUENTES 	= main.cpp \ objet/Fecha.cpp objet/Fecha.h \ objet/DtSocio.cpp objet/DtSocio.h \ objet/DtClase.cpp objet/DtClase.h \ objet/DtSpinning.cpp objet/DtSpinning.h \ objet/DtEntrenamiento.cpp objet/DtEntrenamiento.h \ objet/Clase.cpp objet/Clase.h \ objet/Inscripcion.cpp objet/Inscripcion.h \ objet/Spinning.cpp objet/Spinning.h \ objet/Entrenaminto.cpp objet/Entrenaminto.h \ objet/Socio.cpp objet/Socio.h \ Funciones.cpp Funciones.h
 
 CC 		= g++
 OPCIONES 	= -g -Wall
@@ -8,15 +8,15 @@ OPCIONES 	= -g -Wall
 ifeq ($(OS),Windows_NT)
 	LIBS	= -L "C:/MinGW/lib" -I "C:/MinGW/include" -static-libgcc
 	Nombre	= "Ejecutable.exe"
-	RM 	= cmd /C del /s /q *.o $(Nombre) 
+	RM 	= cmd /C del /s /q *.o $(Nombre) "Ejecutable.out"
 else
 	LIBS	=
-	Nombre	= "Ejecutable"
-	RM 	= rm -f $(OBJETOS) main.O $(Nombre) 
+	Nombre	= "Ejecutable.out"
+	RM 	= rm -f $(OBJETOS) main.O $(Nombre) "Ejecutable.exe"
 endif
 
 $(Nombre): $(OBJETOS) main.o Makefile
-	$(CC) $(OPCIONES) $(OBJETOS) main.cpp -o $(Nombre) 
+	$(CC) $(OPCIONES) $(OBJETOS) main.cpp -o $(Nombre)
 
 main.o: main.cpp $(OBJETOS)
 	$(CC) -c main.cpp -o main.o $(LIBS)
@@ -56,8 +56,14 @@ Funciones.o: Funciones.cpp Funciones.h
 
 clean:
 	$(RM)
-		
-rebuild:
+
+limpiar:
+	$(RM)
+
+reconstruir:
 	make clean
 	make
 
+rebuild:
+	make clean
+	make
