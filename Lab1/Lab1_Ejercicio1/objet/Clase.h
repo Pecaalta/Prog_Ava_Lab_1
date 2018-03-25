@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-#include "datos.h"
+#include "../datos.h"
 #include "Inscripcion.h"
 
 class Clase {

@@ -20,8 +20,8 @@
 			Socio* aux = socio_del_sistema[i];
 			if (aux != NULL) {
 				cont++;
-				cout << "     C.I. \t" << aux->getCI() << endl;
 				cout << "     Nombre \t" << aux->getNombre() << endl;
+				cout << "     C.I. \t" << aux->getCI() << endl;
 				cout << endl;
 			}
 		}
@@ -34,7 +34,6 @@
 			Clase* aux = clases_del_sistema[i];
 			if (aux != NULL) {
 				cont++;
-				cout << "     C.I.   \t" << aux->getId() << endl;
 				cout << "     Nombre \t" << aux->getNombre() << endl;
 				cout << "     Turno  \t";
 				switch(aux->getTurno()){
@@ -48,6 +47,7 @@
 						cout << "Noche";
 					break;
 				}
+				cout  << endl << "     ID    \t" << aux->getId();
 				cout << endl << endl;
 			}
 		}

@@ -11,10 +11,9 @@ int ancho = 80;
 
 #ifdef linux
 
-
 	#include <sys/ioctl.h>
 
-  	string ASCII[] = {"\u2550","\u2551","\u2554","\u2557","\u255D","\u255A"};
+  	string ASCII[] = {"\u2550","\u2551","\u2554","\u2557","\u255D","\u255A","\u2500"};
 	
 	void vaciar(){
 		system("clear");
@@ -27,7 +26,7 @@ int ancho = 80;
 	}
 #endif
 #if  defined(WIN32) || defined(_WIN32)
- 	char ASCII[]  = {(char)205,(char)186,(char)201,(char)187,(char)188,(char)200};
+ 	char ASCII[]  = {(char)205,(char)186,(char)201,(char)187,(char)188,(char)200,(char)196};
 	
 	void vaciar(){
 		 system("cls");
@@ -92,10 +91,10 @@ void Cabeza(string texto){
 	cout << endl;
 	}
 void Pis(){
-	int anchoImprimible = (ancho-18);
-	cout << "    ";
+	int anchoImprimible = (ancho-12);
+	cout << "      ";
 	for (int i = 0 ;i<anchoImprimible;i++){
-		cout << "-";
+		cout << ASCII[6];
 	}
 	cout << endl << "   ";
 	pausar();
@@ -130,13 +129,6 @@ DtEntrenamiento* NuevoEntrenamiento(){
 	bool enrambla, continuar = false;
 	vaciar();
 	Cabeza("Nueva Clase");
-	do{
-		if (id!=1) cout << "\t  No es un numero "<< endl;
-		cout << "\t  ID > ";
-		cin >> opcion;
-		fflush(stdin);
-		id = toInt(opcion);
-	}while(id==-1);
 
 	cout << "\t  Nombre > ";
 	fflush(stdin);
@@ -167,6 +159,7 @@ DtEntrenamiento* NuevoEntrenamiento(){
 			cout << "\t  Opcion incorrecta";
 	}
 	continuar = false;
+	
 	while(!continuar){
 		cout << "\t  En Ruta si(1)/no(2)> ";
 		fflush(stdin);
@@ -183,6 +176,14 @@ DtEntrenamiento* NuevoEntrenamiento(){
 			cout << endl;
 		}
 	}
+	
+	do{
+		if (id!=1) cout << "\t  No es un numero "<< endl;
+		cout << "\t  ID > ";
+		cin >> opcion;
+		fflush(stdin);
+		id = toInt(opcion);
+	}while(id==-1);
 
 	return new DtEntrenamiento(id,nombre,t,enrambla);
 }
@@ -193,13 +194,6 @@ DtSpinning* NuevaSpinning(){
 	bool continuar = false;
 	vaciar();
 	Cabeza("Nueva Clase");
-	do{
-		if (id!=1) cout << "\t  No es un numero "<< endl;
-		cout << "\t  ID > ";
-		cin >> opcion;
-		fflush(stdin);
-		id = toInt(opcion);
-	}while(id==-1);
 
 	cout << "\t  Nombre > ";
 	fflush(stdin);
@@ -234,6 +228,14 @@ DtSpinning* NuevaSpinning(){
 	fflush(stdin);
 	cin >> cantbicis;
 	fflush(stdin);
+	
+	do{
+		if (id!=1) cout << "\t  No es un numero "<< endl;
+		cout << "\t  ID > ";
+		cin >> opcion;
+		fflush(stdin);
+		id = toInt(opcion);
+	}while(id==-1);
 
 	return new DtSpinning(id,nombre,t,cantbicis);
 
@@ -243,12 +245,12 @@ void NuevoSocio(){
 	Cabeza("Nueva Socio");
 	string nombre,ci;
 
-	cout << "\t  C.I. > ";
-	cin >> ci;
-	fflush(stdin);
-
 	cout << "\t  Nombre > ";
 	cin >> nombre;
+	fflush(stdin);
+
+	cout << "\t  C.I. > ";
+	cin >> ci;
 	fflush(stdin);
 
 	agregarSocio(ci,nombre);
@@ -350,7 +352,8 @@ void Listada_de_Clase(){
 		cout << "\t  No hay inscripciones " << endl;
 	}else{
 		for(int i = 0 ; i<tam;i++){
-			cout << "\t  C.I. \t- " << dts[i]->getCI() << endl;
+			cout << endl;
+			cout << "\t  C.I.   \t- " << dts[i]->getCI() << endl;
 			cout << "\t  Nombre \t- " << dts[i]->getnombre() << endl;
 		}
 	}
@@ -429,11 +432,14 @@ int main(int argc, char** argv) {
 		InicializaClases();
 
 		Home();
+		
+		return 1;
 	}catch(std::invalid_argument &a){
 		system("color 4f");
 		vaciar();
 		Cabeza(a.what());
 		cout << "  ";
 		pausar();
+		return 0;
 	}
 }

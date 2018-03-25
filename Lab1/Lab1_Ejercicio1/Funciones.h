@@ -11,7 +11,7 @@ using namespace std;
 #include "objet/DtClase.h"
 #include "objet/DtSpinning.h"
 #include "objet/DtEntrenamiento.h"
-#include "objet/datos.h"
+#include "datos.h"
 #include "objet/Socio.h"
 #include "objet/Clase.h"
 #include "objet/Spinning.h"

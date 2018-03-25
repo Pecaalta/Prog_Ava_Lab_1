@@ -1,7 +1,7 @@
 #ifndef DTCLASE_H
 #define DTCLASE_H
 
-#include "datos.h"
+#include "../datos.h"
 #include <iostream>
 #include <string>
 using namespace std;
