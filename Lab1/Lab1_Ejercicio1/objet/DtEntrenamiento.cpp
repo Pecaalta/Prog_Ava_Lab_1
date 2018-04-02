@@ -5,60 +5,63 @@ void DtEntrenamiento::setenRambla(bool enRambla){
   this->enRambla = enRambla;
 };
 */
-bool DtEntrenamiento::getenRambla(){
-  return this->enRambla;
+bool DtEntrenamiento::getenRambla() {
+	return this->enRambla;
 };
 
-DtEntrenamiento::DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla):DtClase(id, nombre, turno){
-  this->enRambla = enRambla;
+DtEntrenamiento::DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla): DtClase(id, nombre, turno) {
+	this->enRambla = enRambla;
 };
-DtEntrenamiento::DtEntrenamiento(int id, string nombre, Turno turno):DtClase(id, nombre, turno){
-  this->enRambla = false;
+
+DtEntrenamiento::DtEntrenamiento(int id, string nombre, Turno turno): DtClase(id, nombre, turno) {
+	this->enRambla = false;
 };
-DtEntrenamiento::~DtEntrenamiento(){};
+
+DtEntrenamiento::~DtEntrenamiento() {};
 
 ostream& operator<<(ostream& os,  DtEntrenamiento& dt)  {
-    os << endl;
-	os << "    Id Clase: " << dt.getid()  << endl ;
-	os << "    Nombre: " << dt.getnombre() << endl;
-	os << "    Turno: ";
-	switch(dt.getturno()){
-		case Manana:
-			os << "Maniana";
+	os << endl;
+	os << "\t  Id Clase: " << dt.getid()  << endl ;
+	os << "\t  Nombre: " << dt.getnombre() << endl;
+	os << "\t  Turno: ";
+	switch (dt.getturno()) {
+	case Manana:
+		os << "Ma" << (char)164 << "ana";
 		break;
-		case Tarde:
-			os << "Tarde";
+	case Tarde:
+		os << "Tarde";
 		break;
-		case Noche:
-			os << "Noche";
+	case Noche:
+		os << "Noche";
 		break;
 	}
-    os << endl;
-	os << "    En rambla: " << (dt.getenRambla()?"Si":"No") << endl;
-    os << endl;
+	os << endl;
+	os << "\t  En rambla: " << (dt.getenRambla() ? "Si" : "No") << endl;
+	os << endl;
 
-    return os;
-}
+	return os;
+};
+
 ostream& operator<<(ostream& os,  DtEntrenamiento* dt)  {
-    os << endl;
-	os << "    Id Clase: " << dt->getid()  << endl ;
-	os << "    Nombre: " << dt->getnombre() << endl;
-	os << "    Turno: ";
-	switch(dt->getturno()){
-		case Manana:
-			os << "Maniana";
+	os << endl;
+	os << "\t  Id Clase: " << dt->getid()  << endl ;
+	os << "\t  Nombre: " << dt->getnombre() << endl;
+	os << "\t  Turno: ";
+	switch (dt->getturno()) {
+	case Manana:
+		os << "Ma" << (char)164 << "ana";
 		break;
-		case Tarde:
-			os << "Tarde";
+	case Tarde:
+		os << "Tarde";
 		break;
-		case Noche:
-			os << "Noche";
+	case Noche:
+		os << "Noche";
 		break;
 	}
-    os << endl;
-	os << "    En rambla: " << (dt->getenRambla()?"Si":"No") << endl;
-    os << endl;
-    
-    return os;
-}
-	
+	os << endl;
+	os << "\t  En rambla: " << (dt->getenRambla() ? "Si" : "No") << endl;
+	os << endl;
+
+	return os;
+};
+

@@ -8,11 +8,11 @@ using namespace std;
 #include "Inscripcion.h"
 
 class Clase {
-  private:
+private:
     int id;
     string nombre;
     Turno turno;
-  public:
+public:
     int getId();
     string getNombre();
     Turno getTurno();
@@ -20,11 +20,11 @@ class Clase {
     void setNombre(string nombre);
     void setTurno(Turno turno);
 
-    virtual int cupo()=0;
-    virtual bool searchInscripcion(int ciSocio)=0;
-    virtual void addInscripcion(Inscripcion* Nueva_Inscripto)=0;
-    virtual DtSocio** getCantSocios(int cantSocios)=0;
-    virtual bool deleteInscripcion(int ciSocio)=0;
+    virtual int cupo() = 0;
+    virtual bool searchInscripcion(int ciSocio) = 0;
+    virtual void addInscripcion(Inscripcion* Nueva_Inscripto) = 0;
+    virtual DtSocio** getCantSocios(int cantSocios) = 0;
+    virtual bool deleteInscripcion(int ciSocio) = 0;
 
     Clase(int id, string nombre, Turno turno);
     ~Clase();

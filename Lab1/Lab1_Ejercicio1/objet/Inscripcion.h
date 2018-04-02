@@ -5,17 +5,17 @@
 #include "DtSocio.h"
 
 class Inscripcion {
-  private:
-    Fecha* fecha;
-    DtSocio* cliente;
-  public:
-    DtSocio* getcliente();
+private:
+	Fecha* fecha;
+	DtSocio* cliente;
+public:
+	DtSocio* getcliente();
 	int getCI();
-    Fecha* getFecha();
-    void setFecha(Fecha* fecha);
-    void setcliente(DtSocio* cliente);
-    Inscripcion(Fecha* fecha,DtSocio* cliente);
-    ~Inscripcion();
+	Fecha* getFecha();
+	void setFecha(Fecha* fecha);
+	void setcliente(DtSocio* cliente);
+	Inscripcion(Fecha* fecha, DtSocio* cliente);
+	~Inscripcion();
 };
 
 #endif

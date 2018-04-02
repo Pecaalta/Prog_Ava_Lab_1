@@ -18,19 +18,19 @@ using namespace std;
 #include "objet/Entrenaminto.h"
 #include "objet/Inscripcion.h"
 
-	#define MAX_SOCIOS 50
-	#define MAX_CLASES 50
+#define MAX_SOCIOS 50
+#define MAX_CLASES 50
 
-	void InicializaSocio();
-	void InicializaClases();
-	void ImprimeSocio();
-	void ImprimeClases();
-	void agregarSocio(string ci, string nombre);
-	void agregarClase(DtSpinning& clase);
-	void agregarClase(DtEntrenamiento& clase);
-	void agregarInscripcion(string ciSocio, int idClase, Fecha fecha);
-	void borrarInscripcion(string ciSocio, int idClase);
-	DtSocio** obtenerInfoSociosPorClase (int idClase, int cantSocios);
-	DtClase& obtenerClase(int idClase);
+void InicializaSocio();
+void InicializaClases();
+void ImprimeSocio();
+void ImprimeClases();
+void agregarSocio(string ci, string nombre);
+void agregarClase(DtSpinning& clase);
+void agregarClase(DtEntrenamiento& clase);
+void agregarInscripcion(string ciSocio, int idClase, Fecha fecha);
+void borrarInscripcion(string ciSocio, int idClase);
+DtSocio** obtenerInfoSociosPorClase (int idClase, int cantSocios);
+DtClase& obtenerClase(int idClase);
 
 #endif

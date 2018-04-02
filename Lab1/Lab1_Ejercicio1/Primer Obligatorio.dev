@@ -19,7 +19,7 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=
+OverrideOutputName=Primer Obligatorio.exe
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
@@ -28,25 +28,25 @@ Folders=objet
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=0000000000000000000000000
-UnitCount=23
+CompilerSettings=0000000000000000001000000
+UnitCount=24
 
 [VersionInfo]
 Major=1
 Minor=0
-Release=0
+Release=7
 Build=0
-LanguageID=1033
+LanguageID=14346
 CharsetID=1252
 CompanyName=
-FileVersion=
+FileVersion=1.0.7.0
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
-ProductName=
-ProductVersion=
+ProductName=lab 1
+ProductVersion=1.0.7.0
 AutoIncBuildNr=0
 SyncProduct=1
 
@@ -203,7 +203,7 @@ BuildCmd=
 [Unit18]
 FileName=datos.h
 CompileCpp=1
-Folder=objet
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -231,7 +231,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit21]
-FileName=objet\datos.h
+FileName=datos.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -324,6 +324,16 @@ BuildCmd=
 FileName=Funciones.cpp
 CompileCpp=1
 Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit24]
+FileName=objet\Socio.h
+CompileCpp=1
+Folder=objet
 Compile=1
 Link=1
 Priority=1000
