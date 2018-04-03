@@ -8,6 +8,7 @@ private:
 	bool enRambla;
 public:
 	bool getenRambla();
+	string getType();
 	//void setenRambla(bool enRambla);
 
 	DtEntrenamiento(int id, string nombre, Turno turno, bool enRambla);

@@ -8,6 +8,9 @@ void DtSpinning::setcantBicicletas(){
 int DtSpinning::getcantBicicletas() {
 	return cantBicicletas;
 };
+string DtSpinning::getType(){
+	return "DtSpinning";
+}
 
 DtSpinning::DtSpinning(int id, string nombre, Turno turno, int cantBicicletas): DtClase(id, nombre, turno) {
 	if (cantBicicletas < 50) {
@@ -19,48 +22,4 @@ DtSpinning::DtSpinning(int id, string nombre, Turno turno, int cantBicicletas): 
 
 DtSpinning::~DtSpinning() {}
 
-ostream& operator<<(ostream& os,  DtSpinning& dt)  {
-	os << endl;
-	os << "\t  Id Clase: " << dt.getid()  << endl ;
-	os << "\t  Nombre: " << dt.getnombre() << endl;
-	os << "\t  Turno: ";
-	switch (dt.getturno()) {
-	case Manana:
-		os << "Ma" << (char)164 << "ana";
-		break;
-	case Tarde:
-		os << "Tarde";
-		break;
-	case Noche:
-		os << "Noche";
-		break;
-	}
-	os << endl;
-	os << "\t  Cantidad de de bicicletas: " << dt.getcantBicicletas() << endl;
-	os << endl;
 
-	return os;
-};
-
-ostream& operator<<(ostream& os,  DtSpinning* dt)  {
-	os << endl;
-	os << "\t  Id Clase: " << dt->getid()  << endl ;
-	os << "\t  Nombre: " << dt->getnombre() << endl;
-	os << "\t  Turno: ";
-	switch (dt->getturno()) {
-	case Manana:
-		os << "Ma" << (char)164 << "ana";
-		break;
-	case Tarde:
-		os << "Tarde";
-		break;
-	case Noche:
-		os << "Noche";
-		break;
-	}
-	os << endl;
-	os << "\t  Cantidad de de bicicletas: " << dt->getcantBicicletas() << endl;
-	os << endl;
-
-	return os;
-};

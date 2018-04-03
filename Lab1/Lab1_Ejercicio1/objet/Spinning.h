@@ -15,15 +15,12 @@ private:
 public:
 	int getCantBicicletas();
 	void setCantBicicletas(int cantBicicletas);
-
+	string getType();
 	DtSocio** getCantSocios(int cantSocios);
 	int cupo();
 	bool searchInscripcion(int ciSocio);
 	void addInscripcion(Inscripcion* Nueva_Inscripto);
 	bool deleteInscripcion(int ciSocio);
-
-	friend ostream& operator<<(ostream& os, Spinning& dt);
-	friend ostream& operator<<(ostream& os, Spinning* dt);
 
 	Spinning(int id, string nombre, Turno turno, int cantBicicletas);
 	~Spinning();

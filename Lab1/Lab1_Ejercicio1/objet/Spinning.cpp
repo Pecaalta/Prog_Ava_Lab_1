@@ -2,8 +2,10 @@
 
 int Spinning::getCantBicicletas() {
 	return this->cantBicicletas;
-};
-
+}
+string Spinning::getType(){
+	return "Spinning";
+}
 void Spinning::setCantBicicletas(int cantBicicletas) {
 	if (cantBicicletas <= 50 and cantBicicletas > 0 and this->cantBicicletas != cantBicicletas) {
 		Inscripcion** arr = new Inscripcion*[cantBicicletas];

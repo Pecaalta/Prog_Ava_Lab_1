@@ -1,8 +1,7 @@
 #include "Funciones.h"
 
 Socio* socio_del_sistema[MAX_SOCIOS];
-Entrenaminto* 	clases_del_sistema_E[MAX_CLASES];
-Spinning* 		clases_del_sistema_S[MAX_CLASES];
+Clase* 	clases_del_sistema[MAX_CLASES];
 
 void InicializaSocio() {
 	for (int i = 0; i < MAX_SOCIOS; i++) {
@@ -12,8 +11,7 @@ void InicializaSocio() {
 
 void InicializaClases() {
 	for (int i = 0; i < MAX_CLASES; i++) {
-		clases_del_sistema_E[i] = NULL;
-		clases_del_sistema_S[i] = NULL;
+		clases_del_sistema[i] = NULL;
 	}
 };
 
@@ -36,13 +34,9 @@ void ImprimeSocio() {
 void ImprimeClases() {
 	int cont = 0;
 	for (int i = 0; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_S[i] != NULL) {
+		if (clases_del_sistema[i] != NULL) {
 			cont++;
-			cout << clases_del_sistema_S[i];
-		}
-		if (clases_del_sistema_E[i] != NULL) {
-			cont++;
-			cout << clases_del_sistema_E[i];
+			cout << clases_del_sistema[i];
 		}
 	}
 	if (cont == 0) {
@@ -84,12 +78,9 @@ void agregarClase(DtSpinning& clase) {
 	int i = 0;
 	bool lleno = true;
 	for ( i = 0; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_S[i] == NULL) {
+		if (clases_del_sistema[i] == NULL) {
 			lleno = false;
-		}else if (clases_del_sistema_S[i]->getId() == clase.getid()) {
-			throw invalid_argument("ID duplicado");
-		}
-		if (clases_del_sistema_E[i] != NULL and clases_del_sistema_E[i]->getId() == clase.getid()) {
+		}else if (clases_del_sistema[i]->getId() == clase.getid()) {
 			throw invalid_argument("ID duplicado");
 		}
 	}
@@ -97,8 +88,8 @@ void agregarClase(DtSpinning& clase) {
 		throw invalid_argument("No hay lugar para mas clases de ese tipo");
 	}
 	for (i= 0; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_S[i] == NULL) {
-			clases_del_sistema_S[i] = new Spinning(clase.getid(), clase.getnombre(), clase.getturno(), clase.getcantBicicletas());
+		if (clases_del_sistema[i] == NULL) {
+			clases_del_sistema[i] = new Spinning(clase.getid(), clase.getnombre(), clase.getturno(), clase.getcantBicicletas());
 			clase.~DtSpinning();
 			break;
 		}
@@ -109,12 +100,9 @@ void agregarClase(DtEntrenamiento& clase) {
 	int i = 0;
 	bool lleno = true;
 	for ( i = 0; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_E[i] == NULL) {
+		if (clases_del_sistema[i] == NULL) {
 			lleno = false;
-		}else if (clases_del_sistema_E[i]->getId() == clase.getid()) {
-			throw invalid_argument("ID duplicado");
-		}
-		if (clases_del_sistema_S[i] != NULL and clases_del_sistema_S[i]->getId() == clase.getid()) {
+		}else if (clases_del_sistema[i]->getId() == clase.getid()) {
 			throw invalid_argument("ID duplicado");
 		}
 	}
@@ -122,8 +110,8 @@ void agregarClase(DtEntrenamiento& clase) {
 		throw invalid_argument("No hay lugar para mas clases de ese tipo");
 	}
 	for (i= 0; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_E[i] == NULL) {
-			clases_del_sistema_E[i] = new Entrenaminto(clase.getid(), clase.getnombre(), clase.getturno(), clase.getenRambla());
+		if (clases_del_sistema[i] == NULL) {
+			clases_del_sistema[i] = new Entrenaminto(clase.getid(), clase.getnombre(), clase.getturno(), clase.getenRambla());
 			clase.~DtEntrenamiento();
 			break;
 		}
@@ -148,14 +136,9 @@ void agregarInscripcion(string ciSocio, int idClase, Fecha fecha) {
 	indica q el id/ci no se encontro nunca por lo q es invalido
 	*/
 	for (i ; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_E[i] != NULL and clases_del_sistema_E[i]->getId() == idClase) {
+		if (clases_del_sistema[i] != NULL and clases_del_sistema[i]->getId() == idClase) {
 			invalido = true;
-			clase = clases_del_sistema_E[i];
-			break;
-		}
-		if (clases_del_sistema_S[i] != NULL and clases_del_sistema_S[i]->getId() == idClase) {
-			invalido = true;
-			clase = clases_del_sistema_S[i];
+			clase = clases_del_sistema[i];
 			break;
 		}
 	}
@@ -201,14 +184,9 @@ void borrarInscripcion(string ciSocio, int idClase) {
 	int i = 0;
 	bool invalido = false;
 	for (i ; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_E[i] != NULL and clases_del_sistema_E[i]->getId() == idClase) {
+		if (clases_del_sistema[i] != NULL and clases_del_sistema[i]->getId() == idClase) {
 			invalido = true;
-			clase = clases_del_sistema_E[i];
-			break;
-		}
-		if (clases_del_sistema_S[i] != NULL and clases_del_sistema_S[i]->getId() == idClase) {
-			invalido = true;
-			clase = clases_del_sistema_S[i];
+			clase = clases_del_sistema[i];
 			break;
 		}
 	}
@@ -218,6 +196,7 @@ void borrarInscripcion(string ciSocio, int idClase) {
 
 	int numb;
 	istringstream ( ciSocio ) >> numb;
+
 	if (!clase->deleteInscripcion(numb)) {
 		throw invalid_argument("Socio no existe en este curso ");
 	}
@@ -232,14 +211,9 @@ DtSocio** obtenerInfoSociosPorClase (int idClase, int cantSocios) {
 	int i = 0;
 	bool invalido = false;
 	for (i ; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_E[i] != NULL and clases_del_sistema_E[i]->getId() == idClase) {
+		if (clases_del_sistema[i] != NULL and clases_del_sistema[i]->getId() == idClase) {
 			invalido = true;
-			clase = clases_del_sistema_E[i];
-			break;
-		}
-		if (clases_del_sistema_S[i] != NULL and clases_del_sistema_S[i]->getId() == idClase) {
-			invalido = true;
-			clase = clases_del_sistema_S[i];
+			clase = clases_del_sistema[i];
 			break;
 		}
 	}
@@ -262,21 +236,23 @@ DtClase& obtenerClase(int idClase) {
 	int i = 0;
 	bool invalido = false;
 	for (i ; i < MAX_CLASES; i++) {
-		if (clases_del_sistema_E[i] != NULL and clases_del_sistema_E[i]->getId() == idClase) {
+		if (clases_del_sistema[i] != NULL and clases_del_sistema[i]->getId() == idClase) {
 			invalido = true;
-			clase = clases_del_sistema_E[i];
-			break;
-		}
-		if (clases_del_sistema_S[i] != NULL and clases_del_sistema_S[i]->getId() == idClase) {
-			invalido = true;
-			clase = clases_del_sistema_S[i];
+			clase = clases_del_sistema[i];
 			break;
 		}
 	}
 	if ( !invalido ) {
 		throw invalid_argument("Id de clase invalido");
 	} else {
-		DtClase* ret = new DtClase(clase->getId(), clase->getNombre(), clase->getTurno());
-		return *ret;
+		if ( clase->getType() == "Entrenaminto"){
+			DtClase* ret = new DtEntrenamiento(clase->getId(), clase->getNombre(), clase->getTurno(),clase->getEnRambla());
+			return *ret;
+		}else{
+			DtClase* ret = new DtSpinning(clase->getId(), clase->getNombre(), clase->getTurno(),clase->getCantBicicletas());
+			return *ret;	
+		}
+		
+		
 	}
 };

@@ -460,11 +460,9 @@ void Info_de_clase() {
 		clean_stdin();
 		idClase = toInt(aux);
 	} while (idClase == -1);
-	DtClase clase = obtenerClase(idClase);
 	vaciar();
 	header("Informacion de Clases");
-	cout << clase;
-	clase.~DtClase();
+	cout <<  obtenerClase(idClase);;
 	footer();
 };
 
@@ -530,6 +528,13 @@ int main(int argc, char** argv) {
 		InicializaSocio();
 		InicializaClases();
 		easterEgg(argc,argv);
+		DtEntrenamiento c1(1,"primer clase",Manana,true);
+		agregarClase(c1);
+		DtSpinning c2(2,"segunda clase",Manana,14);
+		agregarClase(c2);
+
+		
+		
 		Home();
 		return 1;
 	} catch (std::invalid_argument &a) {

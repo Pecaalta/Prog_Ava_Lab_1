@@ -11,9 +11,8 @@ private:
 public:
 	//void setcantBicicletas();
 	int getcantBicicletas();
+	string getType();
 	DtSpinning(int id, string nombre, Turno turno, int cantBicicletas);
-	friend ostream& operator<<(ostream& os,  DtSpinning& dt);
-	friend ostream& operator<<(ostream& os,  DtSpinning* dt);
 	~DtSpinning();
 };
 

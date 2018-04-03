@@ -29,7 +29,8 @@ Turno DtClase::getturno() {
 
 ostream& operator<<(ostream& os,  DtClase& dt)  {
 	os << endl;
-	os << "\t  Id Clase: " << dt.getid()  << endl ;
+	os << "\t  Id Clasesssssss: " << dt.getid()  << endl ;
+	os << "\t  Tipo: " << dt.getType()  << endl ;
 	os << "\t  Nombre: " << dt.getnombre() << endl;
 	os << "\t  Turno: ";
 	switch (dt.getturno()) {
@@ -43,6 +44,11 @@ ostream& operator<<(ostream& os,  DtClase& dt)  {
 		os << "Noche";
 		break;
 	}
+	os << endl;
+	if ( dt.getType() == "DtSpinning")
+		os << "\t  Cantidad de de bicicletas: " << dt.getcantBicicletas() << endl;
+	else
+		os << "\t  En rambla: " << (dt.getenRambla()?"Si":"no") << endl;
 	os << endl;
 	return os;
 };
@@ -63,6 +69,11 @@ ostream& operator<<(ostream& os,  DtClase* dt)  {
 		os << "Noche";
 		break;
 	}
+	os << endl;
+	if ( dt->getType() == "DtSpinning")
+		os << "\t  Cantidad de de bicicletas: " << dt->getcantBicicletas() << endl;
+	else
+		os << "\t  En rambla: " <<  (dt->getenRambla()?"Si":"no")  << endl;
 	os << endl;
 	return os;
 };

@@ -19,6 +19,9 @@ public:
     string getnombre();
     Turno getturno();
 
+	virtual string getType(){ return ""; };
+	virtual int getcantBicicletas(){ return 0; };
+	virtual bool getenRambla(){ return 0;};
     friend ostream& operator<<(ostream& os,  DtClase& dt);
     friend ostream& operator<<(ostream& os,  DtClase* dt);
 

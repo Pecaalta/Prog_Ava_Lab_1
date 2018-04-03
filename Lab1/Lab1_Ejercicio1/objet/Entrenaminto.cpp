@@ -1,5 +1,7 @@
 #include "Entrenaminto.h"
-
+string Entrenaminto::getType(){
+	return "Entrenaminto";
+}
 void Entrenaminto::setEnRambla(bool enRambla) {
 	this->enRambla = enRambla;
 	if (this->enRambla and !enRambla) {
@@ -116,50 +118,4 @@ Entrenaminto::Entrenaminto(int id, string nombre, Turno turno, bool enRambla): C
 };
 
 Entrenaminto::~Entrenaminto() {};
-
-ostream& operator<<(ostream& os,  Entrenaminto& dt)  {
-	os << endl;
-	os << "\t  Id Clase: " << dt.getId()  << endl ;
-	os << "\t  Nombre: " << dt.getNombre() << endl;
-	os << "\t  Turno: ";
-	switch (dt.getTurno()) {
-	case Manana:
-		os << "Ma" << (char)164 << "ana";
-		break;
-	case Tarde:
-		os << "Tarde";
-		break;
-	case Noche:
-		os << "Noche";
-		break;
-	}
-	os << endl;
-	os << "\t  En rambla: " << (dt.getEnRambla() ? "Si" : "No") << endl;
-	os << endl;
-
-	return os;
-};
-
-ostream& operator<<(ostream& os,  Entrenaminto* dt)  {
-	os << endl;
-	os << "\t  Id Clase: " << dt->getId()  << endl ;
-	os << "\t  Nombre: " << dt->getNombre() << endl;
-	os << "\t  Turno: ";
-	switch (dt->getTurno()) {
-	case Manana:
-		os << "Ma" << (char)164 << "ana";
-		break;
-	case Tarde:
-		os << "Tarde";
-		break;
-	case Noche:
-		os << "Noche";
-		break;
-	}
-	os << endl;
-	os << "\t  En rambla: " << (dt->getEnRambla() ? "Si" : "No") << endl;
-	os << endl;
-
-	return os;
-};
 

@@ -11,15 +11,13 @@ private:
 public:
 	void setEnRambla(bool enRambla);
 	bool getEnRambla();
-
+	string getType();
 	int cupo();
 	bool searchInscripcion(int ciSocio);
 	void addInscripcion(Inscripcion* Nueva_Inscripto);
 	DtSocio** getCantSocios(int cantSocios);
 	bool deleteInscripcion(int ciSocio);
 
-	friend ostream& operator<<(ostream& os, Entrenaminto& dt);
-	friend ostream& operator<<(ostream& os, Entrenaminto* dt);
 
 	Entrenaminto(int id, string nombre, Turno turno);
 	Entrenaminto(int id, string nombre, Turno turno, bool enRambla);
