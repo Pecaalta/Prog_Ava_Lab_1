@@ -379,7 +379,7 @@ void Inscripcion() {
 			agregarInscripcion(ci, idclase, f);
 			continuar = true;
 		}else if (opcion == "2")	{
-			system("cls");
+			vaciar();
 			header("Inscripciones");
 			cout << endl;
 			cout << "\t  C.I > ";
