@@ -46,7 +46,7 @@ void clean_stdin(void){
 	while((c = getchar()) != '\n' && c != EOF);
 }
 void pausar() {
-	cout << "Precione enter para continuar...";
+	cout << "Presione ENTER para continuar..."; 
 	cin.ignore(cin.rdbuf()->in_avail()+1);
 };
 
@@ -236,7 +236,7 @@ DtEntrenamiento* NuevoEntrenamiento() {
 		}
 		cout << "\t  ID > ";
 		clean_stdin();
-		cin >> opcion;
+		getline(cin, opcion, '\n');
 		id = toInt(opcion);
 	} while (id == -1);
 
@@ -286,14 +286,14 @@ DtSpinning* NuevaSpinning() {
 	do {
 		if (id != 1) cout << "\t  No es un numero " << endl;
 		cout << "\t  Canteidad de Bisicletas > ";
-		cin >> opcion;
+		getline(cin, opcion, '\n');
 		cantbicis = toInt(opcion);
 	} while (cantbicis == -1);
 
 	do {
 		if (id != 1) cout << "\t  No es un numero " << endl;
 		cout << "\t  ID > ";
-		cin >> opcion;
+		getline(cin, opcion, '\n');
 		id = toInt(opcion);
 	} while (id == -1);
 
@@ -503,6 +503,7 @@ void Home() {
 					DtSpinning* p = NuevaSpinning();
 					agregarClase(*p);
 				}
+				cin.get();
 				break;
 			case 3:
 				Inscripcion();
