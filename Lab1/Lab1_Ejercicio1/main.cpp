@@ -352,21 +352,21 @@ void Inscripcion() {
 			do {
 				if (d != 1) cout << "\t  No es un numero " << endl;
 				cout << "\t   Dia \t\t> ";
-				cin >> aux;
+				getline(cin, aux, '\n');
 				d = toInt(aux);
 			} while (d == -1);
 
 			do {
 				if (m != 1) cout << "\t  No es un numero " << endl;
 				cout << "\t   Mes \t\t> ";
-				cin >> aux;
+				getline(cin, aux, '\n');
 				m = toInt(aux);
 			} while (m == -1);
 
 			do {
 				if (a != 1) cout << "\t  No es un numero " << endl;
 				cout << "\t   A" << (char)164 << "o \t\t> ";
-				cin >> aux;
+				getline(cin, aux, '\n');
 				a = toInt(aux);
 			} while (a == -1);
 			Fecha f(d, m, a);
