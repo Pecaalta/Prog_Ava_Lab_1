@@ -533,7 +533,6 @@ void Home() {
 
 int main(int argc, char** argv) {
 
-		FormatearVentana();
 	FormatearVentana();
 	InicializaSocio();
 	InicializaClases();
