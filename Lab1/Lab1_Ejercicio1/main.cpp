@@ -526,6 +526,7 @@ void Home() {
 			header(a.what());
 			cout << "  ";
 			pausar();
+			system("color 0f");
 		}
 	} while (opcion != 8);
 };
@@ -533,16 +534,17 @@ void Home() {
 int main(int argc, char** argv) {
 
 		FormatearVentana();
-		InicializaSocio();
-		InicializaClases();
-		easterEgg(argc,argv);
-		DtEntrenamiento c1(1,"primer clase",Manana,true);
-		agregarClase(c1);
-		DtSpinning c2(2,"segunda clase",Manana,14);
-		agregarClase(c2);
+	FormatearVentana();
+	InicializaSocio();
+	InicializaClases();
+	easterEgg(argc,argv);
+	
+	DtEntrenamiento c1(1,"primer clase",Manana,true);
+	agregarClase(c1);
+	DtSpinning c2(2,"segunda clase",Manana,14);
+	agregarClase(c2);
 
-
-
-		Home();
+	Home();
+	
 	return 1;
 };
